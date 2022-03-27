@@ -1,0 +1,36 @@
+{
+  "name": "node-js-practice",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/phoenixtim/node-js-practice.git"
+  },
+  "keywords": [
+    "Node.JS",
+    "API"
+  ],
+  "author": "Artem Apartsev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phoenixtim/node-js-practice/issues"
+  },
+  "homepage": "https://github.com/phoenixtim/node-js-practice#readme",
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsdoc": "^38.0.7",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-security": "^1.4.0"
+  },
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
+}
