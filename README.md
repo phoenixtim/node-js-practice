@@ -19,3 +19,9 @@
 
 #### Запуск: `node modules/index.js`
 #### Транспиляция и запуск TS: `cd modules && npx tsc && node build/index.js`
+
+## Тестирование Performance measurement APIs
+
+Для тестирования созданы два модуля: light.mjs - выполняет функцию, почти не требующую вычислений, несколько раз, по таймауту; hard.mjs - выполняет много вычислений в цикле, без задержек. В каждом модуле выводятся показатели, собираемые с помощью API perf_hooks.
+
+#### Запуск: `node performance/hard.mjs` и `node performance/light.mjs`
