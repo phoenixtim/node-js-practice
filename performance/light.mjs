@@ -1,26 +1,33 @@
+/* eslint-disable no-console */
+
 import { monitorEventLoopDelay, performance, PerformanceObserver } from 'perf_hooks'
 
-const observer = new PerformanceObserver((items) => {
-  console.log(items.getEntries())
+const startMarkName = 'start-light'
+const measureName = 'measure-light'
+// Этот коллбэк ловит события из всех модулей. Поэтому, для адекватной работы, при вызове из main,
+// нужна фильтрация по имени.
+const observer = new PerformanceObserver(items => {
+  const measure = items.getEntries()[0]
+  if (!measure || measure.name !== measureName) return
 
-  performance.clearMarks()
+  console.log(measure)
+
+  // clearMarks и clearMeasures тоже работают на метки, созданные во всех модулях.
+  performance.clearMarks(startMarkName)
   // @ts-ignore
-  performance.clearMeasures()
+  performance.clearMeasures(measureName)
   observer.disconnect()
 })
 observer.observe({ entryTypes: ['measure'] })
 
 const work = index => {
   console.log(`work ${index} done`)
-
-  performance.mark(`work-${index}`)
 }
 
-const basicTimeout = 500
+const basicTimeout = 300
 
 const histogram = monitorEventLoopDelay()
-const startMark = 'start'
-performance.mark(startMark)
+performance.mark(startMarkName)
 
 const promises = []
 histogram.enable()
@@ -36,7 +43,7 @@ for (let index = 0; index < 5; index++) {
 }
 await Promise.all(promises)
 histogram.disable()
-performance.measure(`measure`, startMark)
+performance.measure(measureName, startMarkName)
 
-console.log('event loop utilization', performance.eventLoopUtilization(startUtilization))
-console.log('event loop delay histogram', histogram)
+console.log('event loop utilization light', performance.eventLoopUtilization(startUtilization))
+console.log('event loop delay histogram light', histogram)
